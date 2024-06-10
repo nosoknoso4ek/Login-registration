@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма заявок</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+    table, table th, table td {
+        border: 2px solid black;
+    }
+</style>
+<body>
+    <h2>Добавление заявки</h2>
+    <form id="requestForm">
+        <label for="requestType">Типовая заявка:</label><br>
+        <input type="text" id="requestType"><br><br>
+        <label for="comment">Комментарий к заявке:</label><br>
+        <textarea id="comment"></textarea><br><br>
+        <label for="requestNumber">Номер заявки:</label><br>
+        <input type="text" id="requestNumber"><br><br>
+        <button type="button" onclick="addRequest()">Добавить заявку</button>
+    </form>
+
+    <h3>Список заявок</h3>
+    <body>
+    <table class="table" id="requestsTable">
+        <tr>
+            <th class="td, th">№ заявки</th>
+            <th class="td, th">Типовая заявка</th>
+            <th class="td, th">Комментарий к заявке</th>
+            <th class="td, th">Дата создания</th>
+        </tr>
+    </table>
+    <script>
+        function addRequest() {
+            const requestType = document.getElementById('requestType').value;
+            const comment = document.getElementById('comment').value;
+            const requestNumber = document.getElementById('requestNumber').value; // Ввод номера заявки вручную
+            const currentDate = new Date().toLocaleDateString();
+    
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${requestNumber}</td>
+                <td>${requestType}</td>
+                <td>${comment}</td>
+                <td>${currentDate}</td>
+            `;
+    
+            const tableBody = document.getElementById('requestsTable').getElementsByTagName('tbody')[0];
+            tableBody.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
+
